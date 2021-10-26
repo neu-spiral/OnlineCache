@@ -1,0 +1,72 @@
+#!/bin/bash
+
+for eta in 0.01 0.02 0.05 0.1 0.2 0.5
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --action_selector_eta $eta
+    done
+done
+
+
+for color in 100 200 500 1000 2000 5000
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --colors $color
+    done
+done
+
+
+for freq in 1 5 10 50 100 500 1000
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --frequency $freq
+    done
+done
+
+for T in 0.5 1 2 5 10 20
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --T $T
+    done
+done
+
+
+
+for eta in 0.01 0.02 0.05 0.1 0.2 0.5
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --action_selector_eta $eta --trace_location traces/fixed_popularity_catalog_50.pkl --catalog_size 50 --demand_size 200
+    done
+done
+
+
+for color in 100 200 500 1000 2000 5000
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --colors $color --trace_location traces/fixed_popularity_catalog_50.pkl  --catalog_size 50 --demand_size 200
+    done
+done
+
+
+for freq in 1 5 10 50 100 500 1000
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --frequency $freq --trace_location traces/fixed_popularity_catalog_50.pkl --catalog_size 50 --demand_size 200
+    done
+done
+
+for T in 0.5 1 2 5 10 20
+do
+    for graph in erdos_renyi balanced_tree hypercube geant dtelekom
+    do
+        sbatch ../script.sh CacheNetwork.py sensitivity_result/ --graph_type $graph --cache_type TBGRD --T $T --trace_location traces/fixed_popularity_catalog_50.pkl --catalog_size 50 --demand_size 200
+    done
+done
+
